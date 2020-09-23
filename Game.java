@@ -13,9 +13,16 @@ public class Game extends Canvas implements Runnable{
     private Thread thread;
 
     private boolean running;
+    private ObjectHandler objHandler;
 
     public Game(){
         new Window(WIDTH,HEIGHT,"Wave Game",this);
+
+        objHandler = new ObjectHandler();
+
+        //Makes a player object
+        objHandler.addObject(new Player(100,100,54,72,ID.Player));
+        objHandler.addObject(new Player(50,50,ID.Player));
     }
 
     public synchronized void Start(){
@@ -34,7 +41,7 @@ public class Game extends Canvas implements Runnable{
     }
 
     public void tick(){
-
+        objHandler.tick();
     }
 
     private void render(){
@@ -46,9 +53,12 @@ public class Game extends Canvas implements Runnable{
 
         Graphics g = bs.getDrawGraphics();
 
-        //Fills the entire screen to whatever color we set
+        //Fills the entire screen to whatever color we set a.k.a makes the background
         g.setColor(Color.black);
         g.fillRect(0, 0, WIDTH, HEIGHT);
+
+        //Then draw all objects after background
+        objHandler.render(g);
 
         g.dispose();
         bs.show();

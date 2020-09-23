@@ -27,4 +27,51 @@ public abstract class GameObject {
 
     public abstract void tick();
     public abstract void render(Graphics g);
+
+    
+    //Get Setters
+    //Getters
+    public float getX(){
+        return x;
+    }
+    public float getY(){
+        return y;
+    }
+    public int getXSize(){
+        return xSize;
+    }
+    public int getYSize(){
+        return ySize;
+    }
+    public ID getID(){
+        return id;
+    }
+    public float getVelX(){
+        return velX;
+    }
+    public float getVelY(){
+        return velY;
+    }
+    //Setters
+    public void setX(float x){
+        this.x = x;
+    }
+    public void setY(float y){
+        this.y = y;
+    }
+    public void setXSize(int x){
+        this.xSize = x;
+    }
+    public void setYSize(int y){
+        this.ySize = y;
+    }
+    public void setID(ID id){
+        this.id = id;
+    }
+    public void setVelX(float x){
+        this.velX = x;
+    }
+    public void setVelY(float y){
+        this.velY = y;
+    }
 }

@@ -14,15 +14,18 @@ public class Game extends Canvas implements Runnable{
 
     private boolean running;
     private ObjectHandler objHandler;
+    private HUD hud;
 
     public Game(){
         new Window(WIDTH,HEIGHT,"Wave Game",this);
 
         objHandler = new ObjectHandler();
+        hud = new HUD();
+        this.addKeyListener(new KeyInput(objHandler));
 
         //Makes a player object
-        objHandler.addObject(new Player(100,100,54,72,ID.Player));
-        objHandler.addObject(new Player(50,50,ID.Player));
+        objHandler.addObject(new Player(100,100,ID.Player));
+        objHandler.addObject(new BasicEnemy(20,20,ID.Enemy));
     }
 
     public synchronized void Start(){
@@ -42,6 +45,7 @@ public class Game extends Canvas implements Runnable{
 
     public void tick(){
         objHandler.tick();
+        hud.tick();
     }
 
     private void render(){
@@ -59,6 +63,7 @@ public class Game extends Canvas implements Runnable{
 
         //Then draw all objects after background
         objHandler.render(g);
+        hud.render(g);
 
         g.dispose();
         bs.show();

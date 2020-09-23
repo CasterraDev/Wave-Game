@@ -28,7 +28,7 @@ public abstract class GameObject {
     public abstract void tick();
     public abstract void render(Graphics g);
 
-    
+
     //Get Setters
     //Getters
     public float getX(){

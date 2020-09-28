@@ -34,7 +34,8 @@ public class HUD {
     }
 
     public void tick(){
-        shownHealth = Math.clamp(shownHealth,0,maxHealth);
+        health = Player.Health;
+        shownHealth = Math.clamp(health,0,maxHealth) * 2;
     }
 
     public void render(Graphics g){

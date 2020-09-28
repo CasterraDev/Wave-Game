@@ -5,10 +5,21 @@ public abstract class GameObject {
     protected float x,y;
     protected int xSize,ySize;
     protected ID id;
+    protected ObjectHandler objHandler;
+    public BoxCollider bc = new BoxCollider(x, y, xSize, ySize);
 
     protected float velX,velY; //Used for movement
 
     //Constructors
+    public GameObject(float x,float y,int xSize,int ySize,ID id,ObjectHandler objHandler){
+        this.x = x;
+        this.y = y;
+        this.xSize = xSize;
+        this.ySize = ySize;
+        this.id = id;
+        this.objHandler = objHandler;
+    }
+
     public GameObject(float x,float y,int xSize,int ySize,ID id){
         this.x = x;
         this.y = y;

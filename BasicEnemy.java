@@ -22,6 +22,7 @@ public class BasicEnemy extends GameObject {
     public void tick() {
         x += velX;
         y += velY;
+        bc = new BoxCollider(x, y, xSize, ySize);
 
         if (x > Game.WIDTH - xSize || x < 0){
             velX *= -1;

@@ -2,7 +2,7 @@ import java.awt.Graphics;
 import java.awt.Color;
 
 public class SpeedEnemy extends GameObject {
-    public SpeedEnemy(float x, float y, ID id) {
+    public SpeedEnemy(float x, float y, ID id){
         super(x, y, id);
         start();
     }
@@ -22,6 +22,7 @@ public class SpeedEnemy extends GameObject {
     public void tick() {
         x += velX;
         y += velY;
+        bc = new BoxCollider(x, y, xSize, ySize);
 
         if (x > Game.WIDTH - xSize || x < 0){
             velX *= -1;

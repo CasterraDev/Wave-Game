@@ -40,7 +40,7 @@ public class Game extends Canvas implements Runnable{
 
         if (state == STATE.game){
             //Makes a player object
-            objHandler.addObject(new Player(100,100,ID.Player));
+            objHandler.addObject(new Player(100,100,32,32,ID.Player,objHandler));
         }
     }
 

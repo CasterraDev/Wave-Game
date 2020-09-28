@@ -15,17 +15,33 @@ public class Game extends Canvas implements Runnable{
     private boolean running;
     private ObjectHandler objHandler;
     private HUD hud;
+    private Spawner spawner;
+    private MainMenu mainMenu;
+
+    public enum STATE{
+        menu,
+        game,
+        shop,
+        end,
+    }
+
+    public static STATE state = STATE.game;
 
     public Game(){
-        new Window(WIDTH,HEIGHT,"Wave Game",this);
-
         objHandler = new ObjectHandler();
-        hud = new HUD();
         this.addKeyListener(new KeyInput(objHandler));
 
-        //Makes a player object
-        objHandler.addObject(new Player(100,100,ID.Player));
-        objHandler.addObject(new BasicEnemy(20,20,ID.Enemy));
+        hud = new HUD();
+        spawner = new Spawner(objHandler,hud);
+        mainMenu = new MainMenu();
+
+        new Window(WIDTH,HEIGHT,"Wave Game",this);
+        this.requestFocus();
+
+        if (state == STATE.game){
+            //Makes a player object
+            objHandler.addObject(new Player(100,100,ID.Player));
+        }
     }
 
     public synchronized void Start(){
@@ -46,6 +62,7 @@ public class Game extends Canvas implements Runnable{
     public void tick(){
         objHandler.tick();
         hud.tick();
+        spawner.tick();
     }
 
     private void render(){
@@ -63,7 +80,13 @@ public class Game extends Canvas implements Runnable{
 
         //Then draw all objects after background
         objHandler.render(g);
+
+
+        //Draw HUD after objects so it is on top
         hud.render(g);
+
+        mainMenu.render(g);
+
 
         g.dispose();
         bs.show();

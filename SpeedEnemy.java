@@ -1,13 +1,13 @@
 import java.awt.Graphics;
 import java.awt.Color;
 
-public class BasicEnemy extends GameObject {
-    public BasicEnemy(float x, float y, ID id) {
+public class SpeedEnemy extends GameObject {
+    public SpeedEnemy(float x, float y, ID id) {
         super(x, y, id);
         start();
     }
 
-    public BasicEnemy(float x, float y, int xSize, int ySize, ID id) {
+    public SpeedEnemy(float x, float y, int xSize, int ySize, ID id) {
         super(x, y, xSize, ySize, id);
         start();
     }
@@ -16,7 +16,7 @@ public class BasicEnemy extends GameObject {
         
         
         velX = 8f;
-        velY = 8f;
+        velY = 16f;
     }
 
     public void tick() {
@@ -32,7 +32,7 @@ public class BasicEnemy extends GameObject {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.red);
+        g.setColor(Color.cyan);
         g.fillRect((int)x, (int)y, xSize, ySize);
     }
     

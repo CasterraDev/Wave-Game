@@ -10,6 +10,11 @@ public class HUD {
     float maxHealth = 200;
     float shownHealth = health * 2;
 
+    private int timer;
+    private int level = 1;
+
+    int xStart = 20, yStart = 20,healthHeight = 30;
+
     public HUD(int x,int y,Color textColor){
         this.x = x;
         this.y = y;
@@ -19,13 +24,13 @@ public class HUD {
     public HUD(int x,int y){
         this.x = x;
         this.y = y;
-        this.textColor = Color.black;
+        this.textColor = Color.white;
     }
 
     public HUD(){
         this.x = 0;
         this.y = 0;
-        this.textColor = Color.black;
+        this.textColor = Color.white;
     }
 
     public void tick(){
@@ -33,12 +38,12 @@ public class HUD {
     }
 
     public void render(Graphics g){
-        DrawHealthBar();
+        DrawHealthBar(g);
+        DrawTimer(g);
+        DrawLevel(g);
     }
 
-    public void DrawHealthBar(){
-        int xStart = 20, yStart = 20,healthHeight = 30;
-
+    public void DrawHealthBar(Graphics g){
         g.setColor(Color.gray);
         g.fillRect(xStart, yStart, (int)maxHealth, healthHeight);
 
@@ -47,5 +52,31 @@ public class HUD {
 
         g.setColor(Color.white);
         g.drawRect(xStart, yStart, (int)maxHealth, healthHeight);
+    }
+
+    public void DrawTimer(Graphics g){
+        g.setColor(textColor);
+        g.drawString("Timer: " + timer, Game.WIDTH / 2, yStart);
+    }
+
+    public void DrawLevel(Graphics g){
+        g.setColor(textColor);
+        g.drawString("Level: " + level, xStart, yStart + healthHeight + 20);
+    }
+
+    public int getTimer(){
+        return timer;
+    }
+
+    public int getLevel(){
+        return level;
+    }
+
+    public void setTimer(int timer){
+        this.timer = timer;
+    }
+
+    public void setLevel(int level){
+        this.level = level;
     }
 }

@@ -47,12 +47,10 @@ public class KeyInput extends KeyAdapter{
                 if (key == KeyEvent.VK_A) keyBtn[2] = false;
                 if (key == KeyEvent.VK_D) keyBtn[3] = false;
 
-                //This stops a weird stutter effect that was happening
+                //This stops a weird stutter effect from happening
                 if (!keyBtn[0] && !keyBtn[1]) tempObj.setVelY(0);
                 if (!keyBtn[2] && !keyBtn[3]) tempObj.setVelX(0);
             }
         }
-
-        
     }
 }

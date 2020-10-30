@@ -1,6 +1,11 @@
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/*
+This file is to create every keypress that is within the game
+Hopefully this will be replaced with another file and that file will be used in any file that needs to use keypresses
+*/
+
 public class KeyInput extends KeyAdapter{
     
     private ObjectHandler objHandler;
@@ -9,8 +14,9 @@ public class KeyInput extends KeyAdapter{
 
     public KeyInput(ObjectHandler objHandler){
         this.objHandler = objHandler;
-        this.spd = 5f;
+        this.spd = 10f;
 
+        //This fixes the movement stuttering
         keyBtn[0] = false; //W
         keyBtn[1] = false; //S
         keyBtn[2] = false; //A

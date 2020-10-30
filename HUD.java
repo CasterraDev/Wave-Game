@@ -39,9 +39,11 @@ public class HUD {
     }
 
     public void render(Graphics g){
-        DrawHealthBar(g);
-        DrawTimer(g);
-        DrawLevel(g);
+        if (Game.state == Game.STATE.game){
+            DrawHealthBar(g);
+            DrawTimer(g);
+            DrawLevel(g);
+        }
     }
 
     public void DrawHealthBar(Graphics g){
@@ -62,7 +64,7 @@ public class HUD {
 
     public void DrawLevel(Graphics g){
         g.setColor(textColor);
-        g.drawString("Level: " + level, xStart, yStart + healthHeight + 20);
+        g.drawString("Wave: " + level, xStart, yStart + healthHeight + 20);
     }
 
     public int getTimer(){

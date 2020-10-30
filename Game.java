@@ -9,7 +9,7 @@ public class Game extends Canvas implements Runnable{
      *
      */
     private static final long serialVersionUID = 1L;
-    public static final int WIDTH = 1280,HEIGHT= WIDTH / 12 * 9; //Gives a 16:9 ratio
+    public static final int WIDTH = 960,HEIGHT= WIDTH / 12 * 9; //Gives a 16:9 ratio
     private Thread thread;
 
     private boolean running;
@@ -18,30 +18,26 @@ public class Game extends Canvas implements Runnable{
     private Spawner spawner;
     private MainMenu mainMenu;
 
-    public enum STATE{
+    public static enum STATE{
         menu,
         game,
         shop,
         end,
     }
 
-    public static STATE state = STATE.game;
+    public static STATE state = STATE.menu;
 
     public Game(){
         objHandler = new ObjectHandler();
         this.addKeyListener(new KeyInput(objHandler));
 
         hud = new HUD();
-        spawner = new Spawner(objHandler,hud);
+        
         mainMenu = new MainMenu();
+        this.addMouseListener(mainMenu); //Only need mouse for the main menu
 
-        new Window(WIDTH,HEIGHT,"Wave Game",this);
+        Window window = new Window(WIDTH,HEIGHT,"Wave Game",this);
         this.requestFocus();
-
-        if (state == STATE.game){
-            //Makes a player object
-            objHandler.addObject(new Player(100,100,32,32,ID.Player,objHandler));
-        }
     }
 
     public synchronized void Start(){
@@ -60,9 +56,16 @@ public class Game extends Canvas implements Runnable{
     }
 
     public void tick(){
+        if (state == STATE.game && spawner == null){ //First tick of the game state
+            //Makes a player object
+            objHandler.addObject(new Player(100,100,32,32,ID.Player,objHandler));
+            spawner = new Spawner(objHandler,hud);
+        }
         objHandler.tick();
-        hud.tick();
-        spawner.tick();
+        if (Game.state == Game.STATE.game){
+            hud.tick();
+            spawner.tick();
+        }
     }
 
     private void render(){
@@ -85,8 +88,10 @@ public class Game extends Canvas implements Runnable{
         //Draw HUD after objects so it is on top
         hud.render(g);
 
-        mainMenu.render(g);
-
+        //If we are at the main menu draw the menu
+        if (Game.state == Game.STATE.menu){
+            mainMenu.render(g);
+        }
 
         g.dispose();
         bs.show();

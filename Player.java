@@ -21,19 +21,17 @@ public class Player extends GameObject {
             if (tempObj.getID() == ID.Enemy){
                 if (bc.intersects(tempObj.bc)){
                     if (onlyOnce){
-                        Health -= 5/4;
+                        Health -= 2;
                         onlyOnce = false;
-                        System.out.println("OnlyOnce");
                     }
                 }
                 onlyOnce = true;
-                System.out.println("hello");
             }
         }
 
         //Clamps the player to the screen
-        x = Math.clamp(x, 0, Game.WIDTH - xSize);
-        y = Math.clamp(y, 0, Game.HEIGHT - ySize);
+        x = Math.clamp(x, 0, Game.WIDTH - xSize*2);
+        y = Math.clamp(y, 0, Game.HEIGHT - ySize*2);
     }
 
     public void render(Graphics g) {

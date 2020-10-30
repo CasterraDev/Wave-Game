@@ -13,10 +13,8 @@ public class BasicEnemy extends GameObject {
     }
 
     public void start(){
-        
-        
-        velX = 8f;
-        velY = 8f;
+        velX = 10f;
+        velY = 10f;
     }
 
     public void tick() {
@@ -24,10 +22,10 @@ public class BasicEnemy extends GameObject {
         y += velY;
         bc = new BoxCollider(x, y, xSize, ySize);
 
-        if (x > Game.WIDTH - xSize || x < 0){
+        if (x > Game.WIDTH - xSize*1.5f || x < 0){
             velX *= -1;
         }
-        if (y > Game.HEIGHT - ySize || y < 0){
+        if (y > Game.HEIGHT - ySize*1.5f || y < 0){
             velY *= -1;
         }
     }

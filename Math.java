@@ -8,4 +8,12 @@ public class Math {
             return var;
         }
     }
+
+    public static float abs(float var){
+        if (var < 0){
+            return var * -1;
+        }else{
+            return var;
+        }
+    }
 }

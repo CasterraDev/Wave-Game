@@ -12,6 +12,8 @@ public class BoxCollider {
         this.height = height;
     }
 
+    //DOES NOT WORK CORRECTLY
+    //Gives multiple hits instead of just one
     public boolean intersects(BoxCollider bc){
         int tw = (int)this.width;
         int th = (int)this.height;

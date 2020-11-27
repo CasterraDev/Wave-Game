@@ -27,4 +27,20 @@ public class ObjectHandler{
     public void removeObject(GameObject go){
         list.remove(go);
     }
+
+    public void clearObjectsByID(ID id){
+        for (int i = 0;i < list.size();i++){
+            GameObject tempObj = list.get(i);
+            if (tempObj.getID() == id){
+                removeObject(tempObj);
+            }
+        }
+    }
+
+    public void clearAllObjects(){
+        for (int i = 0;i < list.size();i++){
+            GameObject tempObj = list.get(i);
+                removeObject(tempObj);
+        }
+    }
 }

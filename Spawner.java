@@ -26,18 +26,45 @@ public class Spawner {
         }
         timerInterval++;
 
+        int curLvl = hud.getLevel();
         if (Game.state == Game.STATE.game){
-            if (timer > 50 && hud.getLevel()== 1){ //Lvl 2
-                //objHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
-                //objHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
-                hud.setLevel(hud.getLevel() + 1);
-            }else if (timer > 100 && hud.getLevel()== 2){ //Lvl 3
+            if (timer > 50 && curLvl== 1){ //Lvl 2
                 objHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
-                hud.setLevel(hud.getLevel() + 1);
-            }else if (timer > 150 && hud.getLevel()== 3){ //Lvl 4
+                objHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
+                hud.setLevel(curLvl + 1);
+            }else if (timer > 100 && curLvl== 2){ //Lvl 3
+                objHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
+                hud.setLevel(curLvl + 1);
+            }else if (timer > 150 && curLvl== 3){ //Lvl 4
+                objHandler.addObject(new SpeedEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
+                objHandler.addObject(new FollowerEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64),64,64, ID.Enemy,objHandler));
+                hud.setLevel(curLvl + 1);
+            }else if (timer > 200 && curLvl == 4){ //Lvl 5 maybe mini boss fight?????
+                objHandler.addObject(new SpeedEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
+                objHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
+                hud.setLevel(curLvl + 1);
+            }else if (timer > 250 && curLvl == 5){ //Lvl 6
+                objHandler.clearObjectsByID(ID.Enemy);
                 objHandler.addObject(new SpeedEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
                 objHandler.addObject(new SpeedEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
-                hud.setLevel(hud.getLevel() + 1);
+                objHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
+                hud.setLevel(curLvl + 1);
+            }else if (timer > 300 && curLvl == 6){ //Lvl 7
+                objHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
+                hud.setLevel(curLvl + 1);
+            }else if (timer > 350 && curLvl == 7){ //Lvl 8
+                objHandler.addObject(new FollowerEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64),64,64, ID.Enemy,objHandler));
+                hud.setLevel(curLvl + 1);
+            }else if (timer > 400 && curLvl == 8){ //Lvl 9
+                objHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
+                objHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
+                hud.setLevel(curLvl + 1);
+            }else if (timer > 450 && curLvl == 9){ //Lvl 10 maybe big boss fight?????
+                objHandler.addObject(new SpeedEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
+                objHandler.addObject(new SpeedEnemy(r.nextInt(Game.WIDTH - 64), r.nextInt(Game.HEIGHT - 64), ID.Enemy));
+                hud.setLevel(curLvl + 1);
+            }else if (timer > 450 && curLvl == 10){
+                Game.state = Game.STATE.winScreen;
             }
         }
 

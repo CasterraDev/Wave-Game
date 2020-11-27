@@ -29,6 +29,11 @@ public class Player extends GameObject {
             }
         }
 
+        if (Health <= 0){
+            objHandler.clearAllObjects();
+            Game.state = Game.STATE.loseScreen;
+        }
+
         //Clamps the player to the screen
         x = Math.clamp(x, 0, Game.WIDTH - xSize*2);
         y = Math.clamp(y, 0, Game.HEIGHT - ySize*2);

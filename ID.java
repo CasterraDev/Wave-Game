@@ -1,4 +1,3 @@
-public enum ID{
-    Player(),
-    Enemy();
+public enum ID {
+    Player(), Enemy(), Turret(), Bullet(),
 }

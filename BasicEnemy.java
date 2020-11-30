@@ -1,6 +1,10 @@
 import java.awt.Graphics;
 import java.awt.Color;
 
+/*
+Basic enemy that just bounces of the edges of the window
+*/
+
 public class BasicEnemy extends GameObject {
     public BasicEnemy(float x, float y, ID id) {
         super(x, y, id);
@@ -12,7 +16,7 @@ public class BasicEnemy extends GameObject {
         start();
     }
 
-    public void start(){
+    public void start() {
         velX = 10f;
         velY = 10f;
     }
@@ -22,17 +26,17 @@ public class BasicEnemy extends GameObject {
         y += velY;
         bc = new BoxCollider(x, y, xSize, ySize);
 
-        if (x > Game.WIDTH - xSize*1.5f || x < 0){
+        if (x > Game.WIDTH - xSize * 1.5f || x < 0) {
             velX *= -1;
         }
-        if (y > Game.HEIGHT - ySize*1.5f || y < 0){
+        if (y > Game.HEIGHT - ySize * 1.5f || y < 0) {
             velY *= -1;
         }
     }
 
     public void render(Graphics g) {
         g.setColor(Color.red);
-        g.fillRect((int)x, (int)y, xSize, ySize);
+        g.fillRect((int) x, (int) y, xSize, ySize);
     }
-    
+
 }

@@ -27,11 +27,12 @@ public class KeyInput extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        // NEED A BETTER WAY FOR THIS
+        // Go through the objectHandler list to find the player
         for (int i = 0; i < objHandler.list.size(); i++) {
             GameObject tempObj = objHandler.list.get(i);
 
-            if (tempObj.id == ID.Player) { // All KeyEvents for Player
+            // All KeyEvents for Player
+            if (tempObj.id == ID.Player) {
                 if (key == KeyEvent.VK_W) {
                     tempObj.setVelY(-playerSpd);
                     keyBtn[0] = true;
@@ -59,7 +60,8 @@ public class KeyInput extends KeyAdapter {
         for (int i = 0; i < objHandler.list.size(); i++) {
             GameObject tempObj = objHandler.list.get(i);
 
-            if (tempObj.id == ID.Player) { // All KeyEvents for Player
+            // All KeyEvents for Player
+            if (tempObj.id == ID.Player) {
                 if (key == KeyEvent.VK_W)
                     keyBtn[0] = false;
                 if (key == KeyEvent.VK_S)
